@@ -1,5 +1,5 @@
 
-import EventSource from 'src/evsource'
+import EventSource from './src/evsource'
 
 export {
   EventSource
