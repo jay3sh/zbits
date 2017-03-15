@@ -54,18 +54,18 @@ export default class Kolor {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
     }
-    if (this.a === 1) return this.toCSSHex(bytes);
+    if (this.a === 255) return this.toCSSHex(bytes);
     let red = this.rgb[0];
     let green = this.rgb[1];
     let blue = this.rgb[2];
-    let alpha = this.a;
+    let alpha = this.a/255;
     let max = 255;
     let components = [
       'rgba(',
       Math.max(0, Math.min(max, Math.round(red))), ',',
       Math.max(0, Math.min(max, Math.round(green))), ',',
       Math.max(0, Math.min(max, Math.round(blue))), ',',
-      Math.max(0, Math.min(max, Math.round(alpha))),
+      Math.max(0, Math.min(1, alpha)),
       ')'
     ];
     return components.join('');
