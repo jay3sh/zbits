@@ -4,6 +4,9 @@
   "description": "Lowest level utilities for Zector libraries",
   "main": "index.js",
   "scripts": {
+    "build-test": "webpack --config webpack-test.config.js",
+    "watch-test": "webpack --watch --config webpack-test.config.js",
+    "test": "mocha build/zbits-test.js"
   },
   "repository": {
     "type": "git",
@@ -14,5 +17,17 @@
   "bugs": {
     "url": "https://github.com/jay3sh/zbits/issues"
   },
-  "homepage": "https://github.com/jay3sh/zbits#readme"
+  "homepage": "https://github.com/jay3sh/zbits#readme",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
+    "mocha": "^3.2.0",
+    "webpack": "^2.2.1"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
+  }
 }
