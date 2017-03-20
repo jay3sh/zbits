@@ -69,7 +69,7 @@ export default class Kolor {
       Math.max(0, Math.min(max, Math.round(red * max))), ',',
       Math.max(0, Math.min(max, Math.round(green * max))), ',',
       Math.max(0, Math.min(max, Math.round(blue * max))), ',',
-      Math.max(0, Math.min(1.0, alpha)),
+      Math.max(0, Math.min(1.0, alpha)).toFixed(3),
       ')'
     ];
     return components.join('');
