@@ -5,19 +5,23 @@ export default class Kolor {
   constructor() {
     if(arguments.length === 0) {
       this.rgb = [0,0,0];
-      this.a = 255;
+      this.a = 1.0;
     } else {
       if(Array.isArray(arguments[0])) { // Assume - new Kolor([r,g,b,a])
         let c = arguments[0];
         this.rgb = [c[0],c[1],c[2]];
         if(c[3] === undefined || c[3] === null) {
-          this.a = 255;
+          this.a = 1.0;
         } else {
           this.a = c[3];
         }
       } else if(arguments.length > 1) { // Assume - new Kolor(r,g,b,a)
         this.rgb = [arguments[0], arguments[1], arguments[2]];
-        this.a = arguments[3];
+        if(arguments[3] === undefined || arguments[3] === null) {
+          this.a = 1.0;
+        } else {
+          this.a = arguments[3];
+        }
       } else {
         let c = arguments[0];
         if(c instanceof Kolor) {
@@ -58,14 +62,14 @@ export default class Kolor {
     let red = this.rgb[0];
     let green = this.rgb[1];
     let blue = this.rgb[2];
-    let alpha = this.a/255;
+    let alpha = this.a;
     let max = 255;
     let components = [
       'rgba(',
-      Math.max(0, Math.min(max, Math.round(red))), ',',
-      Math.max(0, Math.min(max, Math.round(green))), ',',
-      Math.max(0, Math.min(max, Math.round(blue))), ',',
-      Math.max(0, Math.min(1, alpha)),
+      Math.max(0, Math.min(max, Math.round(red * max))), ',',
+      Math.max(0, Math.min(max, Math.round(green * max))), ',',
+      Math.max(0, Math.min(max, Math.round(blue * max))), ',',
+      Math.max(0, Math.min(1.0, alpha)),
       ')'
     ];
     return components.join('');
@@ -75,9 +79,9 @@ export default class Kolor {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
     }
-    let red = this.rgb[0]/255;
-    let green = this.rgb[1]/255;
-    let blue = this.rgb[2]/255;
+    let red = this.rgb[0];
+    let green = this.rgb[1];
+    let blue = this.rgb[2];
     bytes = bytes || 2;
     let max = Math.pow(16, bytes) - 1;
     let css = [
@@ -194,15 +198,15 @@ export default class Kolor {
     return this;
   }
 
-  normalRGBA() {
+  RGBA() {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
     }
     return [
-      this.rgb[0]/255,
-      this.rgb[1]/255,
-      this.rgb[2]/255,
-      this.a/255
+      this.rgb[0],
+      this.rgb[1],
+      this.rgb[2],
+      this.a
     ];
   }
   
@@ -231,10 +235,10 @@ export default class Kolor {
 
   static random() {
     return new Kolor([
-      Math.random() * 255,
-      Math.random() * 255,
-      Math.random() * 255,
-      255
+      Math.random(),
+      Math.random(),
+      Math.random(),
+      1.0
     ]);
   }
 }
@@ -313,7 +317,7 @@ function hsv2rgb(hsv) {
       blue = q;
       break;
   }
-  return [red*255, green*255, blue*255];
+  return [red, green, blue];
 }
 
 function rgb2hsv(rgb) {
@@ -347,9 +351,9 @@ function rgb2hsv(rgb) {
   return [hue, saturation, value];
 }
 
-Kolor.WHITE = new Kolor([255,255,255,255]);
-Kolor.BLACK = new Kolor([0,0,0,255]);
-Kolor.RED = new Kolor([255,0,0,255]);
-Kolor.GREEN = new Kolor([0,255,0,255]);
-Kolor.BLUE = new Kolor([0,0,255,255]);
+Kolor.WHITE = new Kolor([1,1,1,1]);
+Kolor.BLACK = new Kolor([0,0,0,1]);
+Kolor.RED = new Kolor([1,0,0,1]);
+Kolor.GREEN = new Kolor([0,1,0,1]);
+Kolor.BLUE = new Kolor([0,0,1,1]);
 
