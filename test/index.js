@@ -18,6 +18,9 @@ describe('Kolor', () => {
   it('should create Half Saturation from RGB', () => {
     assert.equal(new Kolor([1,0,0]).setSaturation(0.5).toCSSHex(), '#FF8080');
   });
+  it('should create Zero Saturation from RGB', () => {
+    assert.equal(new Kolor([1,0,0]).setSaturation(0).toCSSHex(), '#FFFFFF');
+  });
   it('should create Red by RGB half alpha', () => {
     let css = new Kolor(1,0,0,0.5).toCSS();
     assert(/rgba\(255,0,0,0\.5\d*\)/.test(css));

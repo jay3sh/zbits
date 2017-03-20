@@ -58,7 +58,7 @@ export default class Kolor {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
     }
-    if (this.a === 255) return this.toCSSHex(bytes);
+    if (this.a >= 1.0 ) return this.toCSSHex(bytes);
     let red = this.rgb[0];
     let green = this.rgb[1];
     let blue = this.rgb[2];
@@ -275,7 +275,7 @@ function hsv2rgb(hsv) {
 
   if(saturation === 0) {
     // achromatic (grey)
-    return [value*255, value*255, value*255];
+    return [value, value, value];
   }
 
   let h = hue / 60;			// sector 0 to 5
