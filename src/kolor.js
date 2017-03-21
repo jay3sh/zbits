@@ -30,11 +30,20 @@ export default class Kolor {
         } else if(c.hasOwnProperty('r')) {
           // Assume - new Kolor({r:<number>,g:<number>,b:<number>,a:<number>})
           this.rgb = [c.r,c.g,c.b];
-          this.a = c.a;
+          if(c.a === undefined || c.a === null) {
+            this.a = 1.0;
+          } else {
+            this.a = c.a;
+          }
         } else if(c.hasOwnProperty('h')) {
           // Assume - new Kolor({h:<number>,s:<number>,v:<number>,a:<number>})
           this.hsv = [c.h,c.s,c.v];
           this.a = c.a;
+          if(c.a === undefined || c.a === null) {
+            this.a = 1.0;
+          } else {
+            this.a = c.a;
+          }
         }
       }
     }
