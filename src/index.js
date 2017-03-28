@@ -4,7 +4,20 @@
 import EventSource from './evsource'
 import Kolor from './kolor'
 
+/**
+ * Remove item from the array. If item is not part of array it does nothing
+ * @param {Object[]} arr - Array to remove item from. Will be modified when function returns
+ * @param {Object} item - Item to remove
+ */
+function arrRemove(arr, item) {
+  let idx = arr.indexOf(item);
+  if(idx >= 0) {
+    arr.splice(idx, 1);
+  }
+}
+
 export {
   EventSource,
-  Kolor
+  Kolor,
+  arrRemove
 };
