@@ -1,7 +1,10 @@
 
+class Kolor {
 
-export default class Kolor {
-
+  /**
+   * @constructor
+   * @param {Object} color
+   */
   constructor() {
     if(arguments.length === 0) {
       this.rgb = [0,0,0];
@@ -49,6 +52,10 @@ export default class Kolor {
     }
   }
 
+  /**
+   * Returns RGB value
+   * @returns {Number[]} Each of RGB values is in range [0.0-1.0]
+   */
   RGB() {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -366,3 +373,4 @@ Kolor.RED = new Kolor([1,0,0,1]);
 Kolor.GREEN = new Kolor([0,1,0,1]);
 Kolor.BLUE = new Kolor([0,0,1,1]);
 
+export default Kolor;
