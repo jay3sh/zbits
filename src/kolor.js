@@ -3,7 +3,15 @@ class Kolor {
 
   /**
    * @constructor
-   * @param {Object} color
+   * Kolor
+   *
+   * @example
+   * // Following ways are supported to construct Kolor object
+   * new Kolor(); // Creates Black color with alpha = 1.0
+   * new Kolor(r,g,b,a); // each of r,g,b,a should be in 0.0 to 1.0, otherwise undefined behavior
+   * new Kolor([r,g,b,a]); // each of r,g,b,a should be in 0.0 to 1.0, otherwise undefined behavior
+   * new Kolor({r,g,b,a}); // each of r,g,b,a should be in 0.0 to 1.0, otherwise undefined behavior
+   * new Kolor({h,s,v,a}); // each of h,s,v,a should be in 0.0 to 1.0, otherwise undefined behavior
    */
   constructor() {
     if(arguments.length === 0) {
@@ -54,7 +62,7 @@ class Kolor {
 
   /**
    * Returns RGB value
-   * @returns {Number[]} Each of RGB values is in range [0.0-1.0]
+   * @returns {Number[]} Each of RGB values is in range 0.0 to 1.0
    */
   RGB() {
     if(!this.rgb) {
@@ -63,13 +71,22 @@ class Kolor {
     return this.rgb.slice();
   }
 
+  /**
+   * Returns HSV value
+   * @returns {Number[]} Each of HSV values is in range 0.0 to 1.0
+   */
   HSV() {
     if(!this.hsv) {
       this.hsv = rgb2hsv(this.rgb);
     }
     return this.hsv.slice();
   }
-  
+
+  /**
+   * Returns CSS string for this color value
+   * @param {?Number} bytes Number of bytes to use (default 2)
+   * @returns {string}
+   */
   toCSS(bytes) {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -91,6 +108,12 @@ class Kolor {
     return components.join('');
   }
 
+  /**
+   * Returns CSS string of format `#xxx` for this color value
+   * The returned value format doesn't support alpha, hence it's ignored
+   * @param {?Number} bytes Number of bytes to use (default 2)
+   * @returns {string}
+   */
   toCSSHex(bytes) {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -109,15 +132,28 @@ class Kolor {
     return css.join('');
   }
 
+  /**
+   * Get Alpha
+   * @returns {Number}
+   */
   alpha() {
     return this.a;
   }
 
+  /**
+   * Set Alpha
+   * @param {!Number} a
+   * @returns {Kolor} this instance
+   */
   setAlpha(a) {
     this.a = a;
     return this;
   }
 
+  /**
+   * Get Hue
+   * @returns {Number}
+   */
   hue() {
     if(!this.hsv) {
       this.hsv = rgb2hsv(this.rgb);
@@ -125,6 +161,11 @@ class Kolor {
     return this.hsv[0];
   }
 
+  /**
+   * Set Hue
+   * @param {!Number} h
+   * @returns {Kolor} this instance
+   */
   setHue(h) {
     if(!this.hsv) {
       this.hsv = rgb2hsv(this.rgb);
@@ -134,6 +175,10 @@ class Kolor {
     return this;
   }
 
+  /**
+   * Get Saturation
+   * @returns {Number}
+   */
   saturation() {
     if(!this.hsv) {
       this.hsv = rgb2hsv(this.rgb);
@@ -141,6 +186,11 @@ class Kolor {
     return this.hsv[1];
   }
 
+  /**
+   * Set Saturation
+   * @param {!Number} s
+   * @returns {Kolor} this instance
+   */
   setSaturation(s) {
     if(!this.hsv) {
       this.hsv = rgb2hsv(this.rgb);
@@ -150,6 +200,10 @@ class Kolor {
     return this;
   }
 
+  /**
+   * Get Value
+   * @returns {Number}
+   */
   value() {
     if(!this.hsv) {
       this.hsv = rgb2hsv(this.rgb);
@@ -157,6 +211,11 @@ class Kolor {
     return this.hsv[2];
   }
 
+  /**
+   * Set Value
+   * @param {!Number} v
+   * @returns {Kolor} this instance
+   */
   setValue(v) {
     if(!this.hsv) {
       this.hsv = rgb2hsv(this.rgb);
@@ -166,6 +225,10 @@ class Kolor {
     return this;
   }
 
+  /**
+   * Get Red
+   * @returns {Number}
+   */
   red() {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -173,6 +236,11 @@ class Kolor {
     return this.rgb[0];
   }
 
+  /**
+   * Set Red
+   * @param {!Number} r
+   * @returns {Kolor} this instance
+   */
   setRed(r) {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -181,7 +249,11 @@ class Kolor {
     this.hsv = null; // to force HSV recalculation
     return this;
   }
-  
+
+  /**
+   * Get Green
+   * @returns {Number}
+   */
   green() {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -189,6 +261,11 @@ class Kolor {
     return this.rgb[1];
   }
 
+  /**
+   * Set Green
+   * @param {!Number} g
+   * @returns {Kolor} this instance
+   */
   setGreen(g) {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -197,7 +274,11 @@ class Kolor {
     this.hsv = null; // to force HSV recalculation
     return this;
   }
-  
+
+  /**
+   * Get Blue
+   * @returns {Number}
+   */
   blue() {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -205,6 +286,11 @@ class Kolor {
     return this.rgb[2];
   }
 
+  /**
+   * Set Blue
+   * @param {!Number} b
+   * @returns {Kolor} this instance
+   */
   setBlue(b) {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -214,6 +300,10 @@ class Kolor {
     return this;
   }
 
+  /**
+   * Returns RGBA value
+   * @returns {Number[]}
+   */
   RGBA() {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -225,11 +315,19 @@ class Kolor {
       this.a
     ];
   }
-  
+
+  /**
+   * Clones this instance
+   * @returns {Kolor}
+   */
   clone() {
     return Kolor.revive(this.generateMemento());
   }
-  
+
+  /**
+   * Generate Memento
+   * @returns {Object} Memento
+   */
   generateMemento() {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
@@ -237,6 +335,10 @@ class Kolor {
     return [this.rgb[0], this.rgb[1], this.rgb[2], this.a];
   }
 
+  /**
+   * To String
+   * @returns {string}
+   */
   toString() {
     let r = this.red();
     let g = this.green();
@@ -244,11 +346,20 @@ class Kolor {
     let a = this.alpha();
     return `rgba(${parseInt(255*r)},${parseInt(255*g)},${parseInt(255*b)},${a})`;
   }
-  
+
+  /**
+   * Revive Kolor instance from memento
+   * @param {!Object} m
+   * @returns {Kolor}
+   */
   static revive(m) {
     return new Kolor(m);
   }
 
+  /**
+   * Generate random color
+   * @returns {Kolor}
+   */
   static random() {
     return new Kolor([
       Math.random(),
