@@ -1,5 +1,7 @@
-
-
+/**
+ * @class
+ * @memberof zbits
+ */
 class EventSource {
 
   /**

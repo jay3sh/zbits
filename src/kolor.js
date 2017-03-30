@@ -1,10 +1,10 @@
-
+/**
+ * @class
+ * @memberof zbits
+ */
 class Kolor {
 
   /**
-   * @constructor
-   * Kolor
-   *
    * @example
    * // Following ways are supported to construct Kolor object
    * new Kolor(); // Creates Black color with alpha = 1.0

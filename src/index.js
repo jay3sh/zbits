@@ -1,13 +1,13 @@
 /**
- * @module zbits
+ * @namespace {Object} zbits
  */
 import EventSource from './evsource'
 import Kolor from './kolor'
 
 /**
  * Remove item from the array. If item is not part of array it does nothing
- * @param {Object[]} arr - Array to remove item from. Will be modified when function returns
- * @param {Object} item - Item to remove
+ * @param {Array.<*>} arr - Array to remove item from. Will be modified when function returns
+ * @param {*} item - Item to remove
  */
 function arrRemove(arr, item) {
   let idx = arr.indexOf(item);
