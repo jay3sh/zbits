@@ -1,6 +1,7 @@
 /**
- * @namespace {Object} zbits
+ * @module zbits
  */
+
 import EventSource from './evsource'
 import Kolor from './kolor'
 
