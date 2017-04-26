@@ -81,10 +81,10 @@ class Kolor {
 
   /**
    * Returns CSS string for this color value
-   * @param {?Number} bytes Number of bytes to use (default 2)
+   * @param {Number} [bytes=2] Number of bytes to use (default 2)
    * @returns {string}
    */
-  toCSS(bytes) {
+  toCSS(bytes=2) {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
     }
@@ -108,10 +108,10 @@ class Kolor {
   /**
    * Returns CSS string of format `#xxx` for this color value
    * The returned value format doesn't support alpha, hence it's ignored
-   * @param {?Number} bytes Number of bytes to use (default 2)
+   * @param {Number} [bytes=2] Number of bytes to use (default 2)
    * @returns {string}
    */
-  toCSSHex(bytes) {
+  toCSSHex(bytes=2) {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
     }
@@ -318,14 +318,14 @@ class Kolor {
    * @returns {Kolor}
    */
   clone() {
-    return Kolor.revive(this.generateMemento());
+    return Kolor.fromMemento(this.toMemento());
   }
 
   /**
    * Generate Memento
    * @returns {Object} Memento
    */
-  generateMemento() {
+  toMemento() {
     if(!this.rgb) {
       this.rgb = hsv2rgb(this.hsv);
     }
@@ -349,7 +349,7 @@ class Kolor {
    * @param {!Object} m
    * @returns {Kolor}
    */
-  static revive(m) {
+  static fromMemento(m) {
     return new Kolor(m);
   }
 

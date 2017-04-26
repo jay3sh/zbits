@@ -1,6 +1,6 @@
 {
   "name": "zbits",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Lowest level utilities for Zector libraries",
   "main": "src/index.js",
   "scripts": {
